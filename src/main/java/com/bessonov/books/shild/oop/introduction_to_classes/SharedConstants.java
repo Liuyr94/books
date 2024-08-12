@@ -1,0 +1,64 @@
+package com.bessonov.books.shild.oop.introduction_to_classes;
+
+import java.util.Random;
+
+public interface SharedConstants {
+    int NO = 0;
+    int YES = 1;
+    int MAYBE = 2;
+    int LATER = 3;
+    int SOON = 4;
+    int NEVER = 5;
+}
+
+class Questions implements SharedConstants {
+    Random random = new Random();
+
+    int ask() {
+        int prob = (int) (100 * random.nextDouble());
+        if (prob < 30) {
+            return NO;
+        } else if (prob < 60) {
+            return YES;
+        } else if (prob < 75) {
+            return LATER;
+        } else if (prob < 98) {
+            return SOON;
+        } else {
+            return NEVER;
+        }
+    }
+}
+
+class AksMe implements SharedConstants {
+    static void answer(int result) {
+        switch (result) {
+            case NO:
+                System.out.println("Нет");
+                break;
+            case YES:
+                System.out.println("Да");
+                break;
+            case MAYBE:
+                System.out.println("Возможно");
+                break;
+            case LATER:
+                System.out.println("Позже");
+                break;
+            case SOON:
+                System.out.println("Скоро");
+                break;
+            case NEVER:
+                System.out.println("Никогда");
+                break;
+        }
+    }
+
+    public static void main(String[] args) {
+        Questions questions = new Questions();
+        answer(questions.ask());
+        answer(questions.ask());
+        answer(questions.ask());
+        answer(questions.ask());
+    }
+}
